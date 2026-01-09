@@ -1,20 +1,19 @@
 \documentclass[12pt]{article}
 
-
-\usepackage{amsmath}   
-\usepackage{amssymb}  
-\usepackage{geometry}  
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
 \geometry{margin=1in}
 
 \begin{document}
 
 \section{Model Formulation}
 
-We formulate India’s long-term electricity planning problem as a cooperative planning game, where multiple generation technologies jointly determine an optimal electricity mix for the year 2047.
+This section presents a simple mathematical formulation to study India’s long-term electricity planning problem for the year 2047. The objective is to understand how different electricity generation technologies can work together to achieve an affordable, clean, and reliable power system. The formulation is intentionally kept abstract and high-level, allowing it to be refined iteratively as more data and structure are introduced.
 
 \subsection{Players}
 
-Let the set of technology players be
+We consider a small set of major electricity generation technologies as the players in the model. These players represent technologies rather than firms or market agents. Let the set of players be
 \[
 \mathcal{P} = \{N, S, W, H, C\},
 \]
@@ -27,55 +26,50 @@ where:
     \item $C$ denotes coal with carbon capture and storage (CCUS).
 \end{itemize}
 
-Each player represents a generation technology rather than an individual firm or market participant.
+This reduced set captures the key functional roles highlighted in long-term energy planning discussions, such as firm generation, variable renewables, system flexibility, and transition technologies.
 
 \subsection{Decision Variables}
 
-Each technology $i \in \mathcal{P}$ is associated with a non-negative decision variable
+For each technology $i \in \mathcal{P}$, we define a non-negative decision variable
 \[
 x_i \ge 0,
 \]
-where $x_i$ represents the share of total electricity generation supplied by technology $i$ in 2047.
+which represents the share of total electricity generation supplied by technology $i$ in the year 2047. These variables describe long-run average generation shares rather than short-term operational decisions.
 
 \subsection{Adequacy Constraint}
 
-Total electricity demand must be fully met. This is enforced through the adequacy constraint:
+A fundamental requirement of the electricity system is that total demand must be met. This condition is enforced through the following adequacy constraint:
 \[
 \sum_{i \in \mathcal{P}} x_i = 1.
 \]
 
-Adequacy is treated as a hard feasibility constraint rather than a component of the payoff.
+This constraint ensures that the complete electricity demand is satisfied by the chosen generation mix. Adequacy is therefore treated as a hard feasibility condition rather than an objective to be optimized.
 
 \subsection{System-Level Performance Components}
 
-We define three system-level performance measures as linear functions of generation shares:
+To evaluate the overall performance of a given generation mix, we define three system-level performance measures. These represent the main objectives emphasized in long-term energy planning: affordability, cleanliness, and reliability. Each measure is expressed as a linear function of generation shares:
 \begin{align}
 A(x) &= \sum_{i \in \mathcal{P}} a_i x_i, \\
 C(x) &= \sum_{i \in \mathcal{P}} c_i x_i, \\
-R(x) &= \sum_{i \in \mathcal{P}} r_i x_i,
+R(x) &= \sum_{i \in \mathcal{P}} r_i x_i.
 \end{align}
-where:
-\begin{itemize}
-    \item $A(x)$ represents affordability,
-    \item $C(x)$ represents cleanliness (emissions alignment),
-    \item $R(x)$ represents reliability,
-\end{itemize}
-and $a_i$, $c_i$, and $r_i$ denote technology-specific contributions to these system objectives.
+
+Here, $A(x)$ captures the affordability of the electricity system, $C(x)$ represents its alignment with emissions reduction goals, and $R(x)$ reflects system reliability. The coefficients $a_i$, $c_i$, and $r_i$ describe the qualitative contribution of each technology to these system-level objectives.
 
 \subsection{Penalty Terms}
 
-To capture system stresses and limitations associated with high penetration of certain technologies, we introduce technology-specific penalty terms:
+While the linear performance measures capture first-order system benefits, high penetration of certain technologies can also introduce system stresses and limitations. To account for these effects, we introduce technology-specific penalty terms:
 \begin{itemize}
-    \item $P_S(x_S)$: intermittency-related penalty for solar power,
-    \item $P_N(x_N)$: cost and institutional pressure associated with nuclear expansion,
-    \item $P_C(x_C)$: emissions and transition-related penalty for coal with CCUS.
+    \item $P_S(x_S)$ captures intermittency-related challenges associated with high solar penetration,
+    \item $P_N(x_N)$ reflects cost and institutional pressures related to large-scale nuclear expansion,
+    \item $P_C(x_C)$ represents emissions-related and transition costs associated with coal with CCUS.
 \end{itemize}
 
-These penalties represent endogenous system costs rather than policy preferences.
+These penalties are interpreted as endogenous system costs rather than explicit policy preferences.
 
 \subsection{Cooperative Welfare Objective}
 
-The cooperative objective is to maximize national energy welfare, defined as:
+The electricity planning problem is formulated as a cooperative planning model, where the objective is to maximize overall national energy welfare. This welfare function combines system-level benefits and penalty terms as follows:
 \[
 \max_{x} \; W(x)
 = \alpha A(x) + \beta C(x) + \gamma R(x)
@@ -87,8 +81,6 @@ subject to:
 \quad x_i \ge 0 \;\; \forall i \in \mathcal{P}.
 \]
 
-The weights $\alpha$, $\beta$, and $\gamma$ represent system-level policy priorities for affordability, cleanliness, and reliability.
-
-This formulation represents a cooperative planning model rather than a strategic equilibrium among competing players.
+The weights $\alpha$, $\beta$, and $\gamma$ represent the relative importance assigned to affordability, cleanliness, and reliability at the system level. This formulation represents a cooperative planning framework rather than a strategic equilibrium among competing technologies.
 
 \end{document}
